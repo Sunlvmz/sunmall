@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="sunmall:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="sunmall.war">
-      <element id="artifact" artifact-name="sunmall:war exploded" />
-    </root>
-  </artifact>
-</component>
