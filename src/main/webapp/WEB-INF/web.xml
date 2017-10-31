@@ -2,6 +2,63 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0"
+        metadata-complete="true">
   <display-name>Archetype Created Web Application</display-name>
+<!--配置编码filter-->
+  <filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+<!--配置ContextLoaderListener-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!--若不配置 默认WEB-INF下的dispatcher-servlet.xml-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/spring-*.xml</param-value>
+  </context-param>
+
+  <!--配置DispatcherServlet-->
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <!--配置Dispatcher，不可变-->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--
+        配置SpringMVC 需要配置的文件
+        spring-dao.xml，spring-service.xml,spring-web.xml
+       整合顺序  Mybites -> spring -> springMvc
+    -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/spring-*.xml</param-value>
+    </init-param>
+    <!--设置启动优先级最高，即Tomcat启动时即加载dispatcherServlet-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <!--默认匹配所有请求-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
 </web-app>
+
+
