@@ -251,6 +251,7 @@ public class UserServiceImpl implements IUserService{
 
     @Autowired
     private RedisCache cache;
+    @Redis
     public List<User> getUserList() {
         String cache_key= RedisCache.CAHCENAME;
         //先去缓存中取
@@ -268,7 +269,7 @@ public class UserServiceImpl implements IUserService{
 
     @Override
     @Redis
-    public User getUser(int id) {
+    public User getUser(Integer id) {
         User user = userMapper.selectByPrimaryKey(id);
         return user;
     }

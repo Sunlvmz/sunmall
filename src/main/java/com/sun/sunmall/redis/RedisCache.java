@@ -37,6 +37,7 @@ public class RedisCache {
         final byte[] bvalue = ProtoStuffSerializerUtil.serialize(obj);
         Jedis jedis = jedisPool.getResource();
         String result = jedis.set(bkey, bvalue);
+        jedis.close();
         return result;
     }
 
@@ -84,7 +85,10 @@ public class RedisCache {
 //        byte[] result = redisTemplate.execute(new RedisCallback<byte[]>() {
 //            @Override
 //            public byte[] doInRedis(RedisConnection connection) throws DataAccessException {
-//                return connection.get(key.getBytes());
+//
+//              byte[] data = connection.get(key.getBytes());
+//              connection.close();   //没这个会出现 cannot get a resource from pool
+//              return data;
 //            }
 //        });
 //        if (result == null) {
@@ -99,6 +103,7 @@ public class RedisCache {
          if (result == null) {
              return null;
          }
+         jedis.close();
          return ProtoStuffSerializerUtil.deserialize(result, targetClass);
      }
     public <T> List<T> getListCache(final String key, Class<T> targetClass) {

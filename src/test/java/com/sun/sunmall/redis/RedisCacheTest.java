@@ -15,7 +15,7 @@ public class RedisCacheTest {
     private RedisCache redisCache;
     @Test
     public void putCache() throws Exception {
-        String result = redisCache.putCache("test", "hello");
+        String result = redisCache.putCache("test", "helloworld");
         System.out.println(result);
         String s = redisCache.getCache("test", String.class);
         System.out.println(s);
