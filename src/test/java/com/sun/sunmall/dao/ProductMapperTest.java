@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * Created by sun on 2017/5/18.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-dao.xml"})
+@ContextConfiguration({"classpath:spring/spring-*.xml"})
 public class ProductMapperTest {
     @Autowired
     private  ProductMapper productMapper;

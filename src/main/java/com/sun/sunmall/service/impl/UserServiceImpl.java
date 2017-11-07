@@ -251,21 +251,21 @@ public class UserServiceImpl implements IUserService{
 
     @Autowired
     private RedisCache cache;
-    @Redis
-    public List<User> getUserList() {
-        String cache_key= RedisCache.CAHCENAME;
-        //先去缓存中取
-        List<User> result_cache=cache.getListCache(cache_key, User.class);
-        if(result_cache==null){
-            //缓存中没有再去数据库取，并插入缓存（缓存时间为60秒）
-            result_cache = userMapper.listUser();
-            cache.putListCacheWithExpireTime(cache_key, result_cache, RedisCache.CAHCETIME);
-            System.out.printf("put in cache");
-        }else{
-            System.out.printf("get from cache");
-        }
-        return result_cache;
-    }
+//    @Redis
+//    public List<User> getUserList() {
+//        String cache_key= RedisCache.CAHCENAME;
+//        //先去缓存中取
+//        List<User> result_cache=cache.getListCache(cache_key, User.class);
+//        if(result_cache==null){
+//            //缓存中没有再去数据库取，并插入缓存（缓存时间为60秒）
+//            result_cache = userMapper.listUser();
+//            cache.putListCacheWithExpireTime(cache_key, result_cache, RedisCache.CAHCETIME);
+//            System.out.printf("put in cache");
+//        }else{
+//            System.out.printf("get from cache");
+//        }
+//        return result_cache;
+//    }
 
     @Override
     @Redis

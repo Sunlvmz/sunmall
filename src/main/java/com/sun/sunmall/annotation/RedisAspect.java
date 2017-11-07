@@ -20,7 +20,6 @@ import java.lang.reflect.Type;
 public class RedisAspect {
 
     @Autowired
-    @Qualifier("redisCache")
     private RedisCache cache;
 
     @Pointcut("@annotation(com.sun.sunmall.annotation.Redis)") //@annotation用于匹配当前执行方法持有指定注解的方法；

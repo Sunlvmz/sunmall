@@ -29,10 +29,10 @@ public class UserServiceImplTest {
 //        ServerResponse response= userService.getInformationRedis(id);
 //        System.out.println(response.getData());
 //    }
-    @Test
-    public void getUserList() throws Exception {
-        List<User> userList= userService.getUserList();
-    }
+//    @Test
+//    public void getUserList() throws Exception {
+//        List<User> userList= userService.getUserList();
+//    }
     @Test
     public void getUser() throws Exception {
         User user = userService.getUser(22);
