@@ -47,6 +47,10 @@ public class Product {
         super();
     }
 
+    public Product(Integer productId) {
+        this.id = productId;
+    }
+
     public Integer getId() {
         return id;
     }
