@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by sun on 2017/5/11.
  */
 public class Const {
-    public static final String CURRENT_USER = "curentUser";
+    public static final String CURRENT_USER = "currentUser";
     public static String USERNAME = "username";
     public static String EMAIL = "email";
 
