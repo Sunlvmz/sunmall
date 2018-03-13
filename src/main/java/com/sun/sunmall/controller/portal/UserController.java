@@ -4,7 +4,8 @@ import com.sun.sunmall.common.Const;
 import com.sun.sunmall.common.ResponseCode;
 import com.sun.sunmall.common.ServerResponse;
 import com.sun.sunmall.pojo.User;
-import com.sun.sunmall.redis.RedisCache;
+//import com.sun.sunmall.redis.RedisCache;
+import com.sun.sunmall.redis.ShardedRedisCacheUtils;
 import com.sun.sunmall.service.IUserService;
 import com.sun.sunmall.utils.CookieUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +30,7 @@ public class UserController {
     private IUserService iUserService;
 
     @Autowired
-    private RedisCache redisCache;
+    private ShardedRedisCacheUtils redisCache;
 
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody

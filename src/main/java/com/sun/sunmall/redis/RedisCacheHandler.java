@@ -6,7 +6,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 @Component
-public class RedisCacheHandle {
+public class RedisCacheHandler {
 
     @Autowired
     private JedisPool jedisPool;

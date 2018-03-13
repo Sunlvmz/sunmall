@@ -7,7 +7,8 @@ import com.sun.sunmall.common.TokenCache;
 import com.sun.sunmall.dao.UserMapper;
 import com.sun.sunmall.pojo.User;
 
-import com.sun.sunmall.redis.RedisCache;
+import com.sun.sunmall.redis.ShardedRedisCacheUtils;
+
 import com.sun.sunmall.service.IUserService;
 import com.sun.sunmall.utils.MD5Util;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +28,7 @@ public class UserServiceImpl implements IUserService{
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private RedisCache redisCache;
+    private ShardedRedisCacheUtils redisCache;
     @Override
     public ServerResponse<User> login(String username, String password) {
        int resultCount = userMapper.checkUsername(username);

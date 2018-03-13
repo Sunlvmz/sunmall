@@ -20,7 +20,7 @@ import redis.clients.jedis.JedisPool;
  * @author lushaoqing
  */
 @Component
-public class RedisCache {
+public class RedisCacheUtils {
 
     public final static String CAHCENAME="cache";//缓存名
     public final static int CAHCETIME=60;//默认缓存时间
@@ -93,7 +93,7 @@ public class RedisCache {
     }
 
 
-//    public <T> T getCache(final String key, Class<T> targetClass) {
+    //    public <T> T getCache(final String key, Class<T> targetClass) {
 //        byte[] result = redisTemplate.execute(new RedisCallback<byte[]>() {
 //            @Override
 //            public byte[] doInRedis(RedisConnection connection) throws DataAccessException {
@@ -108,16 +108,16 @@ public class RedisCache {
 //        }
 //        return ProtoStuffSerializerUtil.deserialize(result, targetClass);
 //    }
-     public <T> T getCache(final String key, Class<T> targetClass) {
-         final byte[] bkey = key.getBytes();
-         Jedis jedis = jedisPool.getResource();
-         byte[] result = jedis.get(bkey);
-         if (result == null) {
-             return null;
-         }
-         jedis.close();
-         return ProtoStuffSerializerUtil.deserialize(result, targetClass);
-     }
+    public <T> T getCache(final String key, Class<T> targetClass) {
+        final byte[] bkey = key.getBytes();
+        Jedis jedis = jedisPool.getResource();
+        byte[] result = jedis.get(bkey);
+        if (result == null) {
+            return null;
+        }
+        jedis.close();
+        return ProtoStuffSerializerUtil.deserialize(result, targetClass);
+    }
     public <T> List<T> getListCache(final String key, Class<T> targetClass) {
         byte[] result = redisTemplate.execute(new RedisCallback<byte[]>() {
             @Override
@@ -154,6 +154,6 @@ public class RedisCache {
      * 清空所有缓存
      */
     public void clearCache() {
-        deleteCacheWithPattern(RedisCache.CAHCENAME+"|*");
+        deleteCacheWithPattern(RedisCacheUtils.CAHCENAME+"|*");
     }
 }

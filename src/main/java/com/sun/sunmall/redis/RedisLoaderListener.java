@@ -1,21 +1,19 @@
 package com.sun.sunmall.redis;
 
 
-import com.sun.sunmall.pojo.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @Slf4j
 @Component
 public class RedisLoaderListener {
 
     @Autowired
-    private RedisCacheHandle redisCacheHandle;
+    private RedisCacheHandler redisCacheHandler;
 
 //    @Autowired
 //    private SecKillMapper secKillMapper;
@@ -25,7 +23,7 @@ public class RedisLoaderListener {
     // 被@PostConstruct修饰的方法会在构造函数之后，init()方法之前运行。
     @PostConstruct
     public void initRedis(){
-        Jedis jedis = redisCacheHandle.getJedis();
+        Jedis jedis = redisCacheHandler.getJedis();
         //清空Redis缓存
         jedis.flushDB();
 //        List<Product> productList = secKillMapper.getAllProduct();
