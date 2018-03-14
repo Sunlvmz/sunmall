@@ -33,26 +33,34 @@ public class FileManageController {
     @RequestMapping("/img/upload")
     @ResponseBody
     public ServerResponse uploadImgFile(HttpSession session, MultipartFile multipartFile, HttpServletRequest request){
-        User user = (User) session.getAttribute(Const.CURRENT_USER);
-        if (user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
-        }
-        if(iUserService.checkAdminRole(user).isSuccess()){
-            //todo 测试不加request 直接session.
-            String path = request.getSession().getServletContext().getRealPath("upload");//request.getSession().getServletContext() 获取的是Servlet容器对象，相当于tomcat容器了。
-                                                                                            // getRealPath("/") 获取实际路径，“/”指代项目根目录，所以代码返回的是项目在容器中的实际发布运行的根路径
-
-            String targetFilePath = iFileService.uploadImageFile(multipartFile, path);
-            String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFilePath;
-
-            Map fileMap = Maps.newHashMap();
-            fileMap.put("uri", targetFilePath);
-            fileMap.put("url", url);
-
-            return ServerResponse.createBySuccess(fileMap);//返回uri和url给前端，供调用图片地址
-        }
-        else
-            return ServerResponse.createByErrorMessage("用户无管理员权限");
+//        User user = (User) session.getAttribute(Const.CURRENT_USER);
+//        if (user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+//        }
+//        if(iUserService.checkAdminRole(user).isSuccess()){
+//            //todo 测试不加request 直接session.
+//            String path = request.getSession().getServletContext().getRealPath("upload");//request.getSession().getServletContext() 获取的是Servlet容器对象，相当于tomcat容器了。
+//                                                                                            // getRealPath("/") 获取实际路径，“/”指代项目根目录，所以代码返回的是项目在容器中的实际发布运行的根路径
+//
+//            String targetFilePath = iFileService.uploadImageFile(multipartFile, path);
+//            String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFilePath;
+//
+//            Map fileMap = Maps.newHashMap();
+//            fileMap.put("uri", targetFilePath);
+//            fileMap.put("url", url);
+//
+//            return ServerResponse.createBySuccess(fileMap);//返回uri和url给前端，供调用图片地址
+//        }
+//        else
+//            return ServerResponse.createByErrorMessage("用户无管理员权限");
+        String path = request.getSession().getServletContext().getRealPath("upload");//request.getSession().getServletContext() 获取的是Servlet容器对象，相当于tomcat容器了。
+        // getRealPath("/") 获取实际路径，“/”指代项目根目录，所以代码返回的是项目在容器中的实际发布运行的根路径
+        String targetFilePath = iFileService.uploadImageFile(multipartFile, path);
+        String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFilePath;
+        Map fileMap = Maps.newHashMap();
+        fileMap.put("uri", targetFilePath);
+        fileMap.put("url", url);
+        return ServerResponse.createBySuccess(fileMap);//返回uri和url给前端，供调用图片地址
     }
     @RequestMapping("/richtxt/upload")
     @ResponseBody
