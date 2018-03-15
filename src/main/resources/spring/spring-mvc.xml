@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context 
@@ -53,5 +54,7 @@
     <!--4:扫描web相关的bean-->
     <context:component-scan base-package="com.sun.sunmall.controller"/>
     <aop:aspectj-autoproxy/>
+    <!--Spring Schedule配置 -->
+    <task:annotation-driven/>
 
 </beans>

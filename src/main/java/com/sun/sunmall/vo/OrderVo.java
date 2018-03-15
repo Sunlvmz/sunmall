@@ -1,11 +1,10 @@
-package com.mmall.vo;
+package com.sun.sunmall.vo;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by geely
+ * Created by sun
  */
 public class OrderVo {
 

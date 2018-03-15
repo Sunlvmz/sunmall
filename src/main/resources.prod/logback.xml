@@ -81,7 +81,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         <appender-ref ref="sunmall" />
         <appender-ref ref="console"/>
     </logger>
-    <!-- geelynote mybatis log 日志  方便查看具体的SQL语句执行情况 -->
+    <!-- sunnote mybatis log 日志  方便查看具体的SQL语句执行情况 -->
     <logger name="com.sun.sunmall.dao" level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->

@@ -3,7 +3,7 @@ package com.sun.sunmall.utils;
 import java.math.BigDecimal;
 
 /**
- * Created by geely
+ * Created by sun
  */
 public class BigDecimalUtil {//丢失精度问题 见 计算机组成原理  http://blog.csdn.net/abing37/article/details/5332798
 

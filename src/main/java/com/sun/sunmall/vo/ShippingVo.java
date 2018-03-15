@@ -1,7 +1,7 @@
 package com.sun.sunmall.vo;
 
 /**
- * Created by geely
+ * Created by sun
  */
 public class ShippingVo {
     private String receiverName;

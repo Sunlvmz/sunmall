@@ -44,6 +44,20 @@ public class ShardedRedisCacheUtils {
         return result;
     }
 
+    public <T> String getSet(String key, String value) {
+        ShardedJedis jedis = shardedJedisPool.getResource();
+        String result = jedis.getSet(key, value);
+        jedis.close();
+        return result;
+    }
+    public <T> Long setnxCache(String key, T obj) {
+        final byte[] bkey = key.getBytes();
+        final byte[] bvalue = ProtoStuffSerializerUtil.serialize(obj);
+        ShardedJedis jedis = shardedJedisPool.getResource();
+        Long result = jedis.setnx(bkey, bvalue);
+        jedis.close();
+        return result;
+    }
     /**
      * 存入redis，带过期时间
      */

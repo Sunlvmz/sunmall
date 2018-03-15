@@ -70,6 +70,7 @@
     <!--设置启动优先级最高，即Tomcat启动时即加载dispatcherServlet-->
     <load-on-startup>1</load-on-startup>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
     <!--默认匹配所有请求-->
